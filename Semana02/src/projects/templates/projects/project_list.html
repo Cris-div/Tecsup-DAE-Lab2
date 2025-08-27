@@ -1,0 +1,15 @@
+{% extends "projects/base.html" %}
+{% block content %}
+<h2>Projects</h2>
+<a class="btn btn-primary mb-3" href="{% url 'project_create' %}">Create Project</a>
+<ul class="list-group">
+  {% for project in projects %}
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      <a href="{% url 'project_detail' project.pk %}">{{ project.name }}</a>
+      <span class="text-muted">owner: {{ project.owner.username }}</span>
+    </li>
+  {% empty %}
+    <li class="list-group-item">No projects. <a href="{% url 'project_create' %}">Create one</a>.</li>
+  {% endfor %}
+</ul>
+{% endblock %}
